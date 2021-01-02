@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.14'
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+apply plugin: 'com.google.protobuf'
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    grpcVersion = "1.34.1"
+    protoJavaVersion = "3.14.0"
+}
+
+dependencies {
+    /**
+     * gRPC
+     */
+    implementation("io.grpc:grpc-netty-shaded:${grpcVersion}")
+    implementation("io.grpc:grpc-protobuf:${grpcVersion}")
+    implementation("io.grpc:grpc-stub:${grpcVersion}")
+    implementation("com.google.protobuf:protobuf-java-util:${protoJavaVersion}")
+    implementation("com.google.protobuf:protobuf-java:${protoJavaVersion}")
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protoJavaVersion}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task generateGrpcAndProto(type: Exec) {
+    commandLine 'sh', 'generate_grpc_protobuf.sh'
+}
