@@ -26,9 +26,7 @@ ext {
 }
 
 dependencies {
-    /**
-     * gRPC
-     */
+    // gRPC
     implementation("io.grpc:grpc-netty-shaded:${grpcVersion}")
     implementation("io.grpc:grpc-protobuf:${grpcVersion}")
     implementation("io.grpc:grpc-stub:${grpcVersion}")
