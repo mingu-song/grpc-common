@@ -1,24 +1,11 @@
 package song.mingu.proto;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.23.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.36.0-SNAPSHOT)",
     comments = "Source: SampleProto.proto")
 public final class SampleServiceGrpc {
 
@@ -41,29 +28,35 @@ public final class SampleServiceGrpc {
     if ((getSampleCallMethod = SampleServiceGrpc.getSampleCallMethod) == null) {
       synchronized (SampleServiceGrpc.class) {
         if ((getSampleCallMethod = SampleServiceGrpc.getSampleCallMethod) == null) {
-          SampleServiceGrpc.getSampleCallMethod = getSampleCallMethod = 
+          SampleServiceGrpc.getSampleCallMethod = getSampleCallMethod =
               io.grpc.MethodDescriptor.<song.mingu.proto.SampleRequest, song.mingu.proto.SampleResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "grpc.sample.SampleService", "SampleCall"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SampleCall"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   song.mingu.proto.SampleRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   song.mingu.proto.SampleResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new SampleServiceMethodDescriptorSupplier("SampleCall"))
-                  .build();
-          }
+              .setSchemaDescriptor(new SampleServiceMethodDescriptorSupplier("SampleCall"))
+              .build();
         }
-     }
-     return getSampleCallMethod;
+      }
+    }
+    return getSampleCallMethod;
   }
 
   /**
    * Creates a new async stub that supports all call types for the service
    */
   public static SampleServiceStub newStub(io.grpc.Channel channel) {
-    return new SampleServiceStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<SampleServiceStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<SampleServiceStub>() {
+        @java.lang.Override
+        public SampleServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new SampleServiceStub(channel, callOptions);
+        }
+      };
+    return SampleServiceStub.newStub(factory, channel);
   }
 
   /**
@@ -71,7 +64,14 @@ public final class SampleServiceGrpc {
    */
   public static SampleServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    return new SampleServiceBlockingStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<SampleServiceBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<SampleServiceBlockingStub>() {
+        @java.lang.Override
+        public SampleServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new SampleServiceBlockingStub(channel, callOptions);
+        }
+      };
+    return SampleServiceBlockingStub.newStub(factory, channel);
   }
 
   /**
@@ -79,7 +79,14 @@ public final class SampleServiceGrpc {
    */
   public static SampleServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    return new SampleServiceFutureStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<SampleServiceFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<SampleServiceFutureStub>() {
+        @java.lang.Override
+        public SampleServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new SampleServiceFutureStub(channel, callOptions);
+        }
+      };
+    return SampleServiceFutureStub.newStub(factory, channel);
   }
 
   /**
@@ -90,14 +97,14 @@ public final class SampleServiceGrpc {
      */
     public void sampleCall(song.mingu.proto.SampleRequest request,
         io.grpc.stub.StreamObserver<song.mingu.proto.SampleResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getSampleCallMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSampleCallMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getSampleCallMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 song.mingu.proto.SampleRequest,
                 song.mingu.proto.SampleResponse>(
@@ -108,19 +115,15 @@ public final class SampleServiceGrpc {
 
   /**
    */
-  public static final class SampleServiceStub extends io.grpc.stub.AbstractStub<SampleServiceStub> {
-    private SampleServiceStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private SampleServiceStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class SampleServiceStub extends io.grpc.stub.AbstractAsyncStub<SampleServiceStub> {
+    private SampleServiceStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected SampleServiceStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected SampleServiceStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new SampleServiceStub(channel, callOptions);
     }
 
@@ -128,52 +131,44 @@ public final class SampleServiceGrpc {
      */
     public void sampleCall(song.mingu.proto.SampleRequest request,
         io.grpc.stub.StreamObserver<song.mingu.proto.SampleResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSampleCallMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
    */
-  public static final class SampleServiceBlockingStub extends io.grpc.stub.AbstractStub<SampleServiceBlockingStub> {
-    private SampleServiceBlockingStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private SampleServiceBlockingStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class SampleServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<SampleServiceBlockingStub> {
+    private SampleServiceBlockingStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected SampleServiceBlockingStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected SampleServiceBlockingStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new SampleServiceBlockingStub(channel, callOptions);
     }
 
     /**
      */
     public song.mingu.proto.SampleResponse sampleCall(song.mingu.proto.SampleRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSampleCallMethod(), getCallOptions(), request);
     }
   }
 
   /**
    */
-  public static final class SampleServiceFutureStub extends io.grpc.stub.AbstractStub<SampleServiceFutureStub> {
-    private SampleServiceFutureStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private SampleServiceFutureStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class SampleServiceFutureStub extends io.grpc.stub.AbstractFutureStub<SampleServiceFutureStub> {
+    private SampleServiceFutureStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected SampleServiceFutureStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected SampleServiceFutureStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new SampleServiceFutureStub(channel, callOptions);
     }
 
@@ -181,7 +176,7 @@ public final class SampleServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<song.mingu.proto.SampleResponse> sampleCall(
         song.mingu.proto.SampleRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSampleCallMethod(), getCallOptions()), request);
     }
   }
