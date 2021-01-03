@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "EventProto";
+option java_package = "song.mingu.proto";
+
+package song.mingu.event;
+
+message EventRequest {
+  string sourceId = 1;
+  string eventId = 2;
+}
+
+message EventResponse {
+  string result = 1;
+}
+
+service EventService {
+  /*
+  서버(1) : 클라이언트(1)
+  서버(N) : 클라이언트(1)
+  서버(1) : 클라이언트(N)
+  서버(N) : 클라이언트(M)
+   */
+  rpc unaryEvent(EventRequest) returns (EventResponse) {}
+  rpc serverStreamingEvent(EventRequest) returns (stream EventResponse) {}
+  rpc clientStreamingEvent(stream EventRequest) returns (EventResponse) {}
+  rpc biStreamingEvent(stream EventRequest) returns (stream EventResponse) {}
+}
