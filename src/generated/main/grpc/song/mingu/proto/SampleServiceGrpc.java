@@ -1,11 +1,24 @@
 package song.mingu.proto;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.36.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.34.1)",
     comments = "Source: SampleProto.proto")
 public final class SampleServiceGrpc {
 
@@ -97,14 +110,14 @@ public final class SampleServiceGrpc {
      */
     public void sampleCall(song.mingu.proto.SampleRequest request,
         io.grpc.stub.StreamObserver<song.mingu.proto.SampleResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSampleCallMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getSampleCallMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getSampleCallMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
+            asyncUnaryCall(
               new MethodHandlers<
                 song.mingu.proto.SampleRequest,
                 song.mingu.proto.SampleResponse>(
@@ -131,7 +144,7 @@ public final class SampleServiceGrpc {
      */
     public void sampleCall(song.mingu.proto.SampleRequest request,
         io.grpc.stub.StreamObserver<song.mingu.proto.SampleResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
+      asyncUnaryCall(
           getChannel().newCall(getSampleCallMethod(), getCallOptions()), request, responseObserver);
     }
   }
@@ -153,7 +166,7 @@ public final class SampleServiceGrpc {
     /**
      */
     public song.mingu.proto.SampleResponse sampleCall(song.mingu.proto.SampleRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+      return blockingUnaryCall(
           getChannel(), getSampleCallMethod(), getCallOptions(), request);
     }
   }
@@ -176,7 +189,7 @@ public final class SampleServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<song.mingu.proto.SampleResponse> sampleCall(
         song.mingu.proto.SampleRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
+      return futureUnaryCall(
           getChannel().newCall(getSampleCallMethod(), getCallOptions()), request);
     }
   }

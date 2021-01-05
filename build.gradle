@@ -7,11 +7,9 @@ buildscript {
     }
 }
 
-plugins {
-    id 'java'
-}
-
+apply plugin: 'java'
 apply plugin: 'com.google.protobuf'
+apply plugin: 'idea'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -22,7 +20,7 @@ repositories {
 
 ext {
     grpcVersion = "1.34.1"
-    protoJavaVersion = "3.14.0"
+    protobufVersion = "3.14.0"
 }
 
 dependencies {
@@ -30,8 +28,6 @@ dependencies {
     implementation("io.grpc:grpc-netty-shaded:${grpcVersion}")
     implementation("io.grpc:grpc-protobuf:${grpcVersion}")
     implementation("io.grpc:grpc-stub:${grpcVersion}")
-    implementation("com.google.protobuf:protobuf-java-util:${protoJavaVersion}")
-    implementation("com.google.protobuf:protobuf-java:${protoJavaVersion}")
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
@@ -39,7 +35,11 @@ dependencies {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:${protoJavaVersion}"
+        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+    }
+    generatedFilesBaseDir = "$projectDir/src/generated"
+    clean {
+        delete generatedFilesBaseDir
     }
     plugins {
         grpc {
@@ -50,6 +50,15 @@ protobuf {
         all()*.plugins {
             grpc {}
         }
+    }
+}
+
+idea {
+    module {
+        sourceDirs += file('src/generated/main/java')
+        sourceDirs += file('src/generated/main/grpc')
+        generatedSourceDirs += file('src/generated/main/java')
+        generatedSourceDirs += file('src/generated/main/grpc')
     }
 }
 

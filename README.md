@@ -11,3 +11,6 @@ cd compiler
 
 cd build/exe/java_plugin
 ```
+
+### gRPC Java Codegen 2
+* idea() 를 이용하여 제너레이트 된 파일을 소스셋에 포함시킨다. (더 깔끔?)

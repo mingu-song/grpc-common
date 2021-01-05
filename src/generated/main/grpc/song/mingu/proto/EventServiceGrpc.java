@@ -1,11 +1,24 @@
 package song.mingu.proto;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.36.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.34.1)",
     comments = "Source: EventProto.proto")
 public final class EventServiceGrpc {
 
@@ -196,56 +209,56 @@ public final class EventServiceGrpc {
      */
     public void unaryEvent(song.mingu.proto.EventRequest request,
         io.grpc.stub.StreamObserver<song.mingu.proto.EventResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUnaryEventMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getUnaryEventMethod(), responseObserver);
     }
 
     /**
      */
     public void serverStreamingEvent(song.mingu.proto.EventRequest request,
         io.grpc.stub.StreamObserver<song.mingu.proto.EventResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getServerStreamingEventMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getServerStreamingEventMethod(), responseObserver);
     }
 
     /**
      */
     public io.grpc.stub.StreamObserver<song.mingu.proto.EventRequest> clientStreamingEvent(
         io.grpc.stub.StreamObserver<song.mingu.proto.EventResponse> responseObserver) {
-      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getClientStreamingEventMethod(), responseObserver);
+      return asyncUnimplementedStreamingCall(getClientStreamingEventMethod(), responseObserver);
     }
 
     /**
      */
     public io.grpc.stub.StreamObserver<song.mingu.proto.EventRequest> biStreamingEvent(
         io.grpc.stub.StreamObserver<song.mingu.proto.EventResponse> responseObserver) {
-      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getBiStreamingEventMethod(), responseObserver);
+      return asyncUnimplementedStreamingCall(getBiStreamingEventMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getUnaryEventMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
+            asyncUnaryCall(
               new MethodHandlers<
                 song.mingu.proto.EventRequest,
                 song.mingu.proto.EventResponse>(
                   this, METHODID_UNARY_EVENT)))
           .addMethod(
             getServerStreamingEventMethod(),
-            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+            asyncServerStreamingCall(
               new MethodHandlers<
                 song.mingu.proto.EventRequest,
                 song.mingu.proto.EventResponse>(
                   this, METHODID_SERVER_STREAMING_EVENT)))
           .addMethod(
             getClientStreamingEventMethod(),
-            io.grpc.stub.ServerCalls.asyncClientStreamingCall(
+            asyncClientStreamingCall(
               new MethodHandlers<
                 song.mingu.proto.EventRequest,
                 song.mingu.proto.EventResponse>(
                   this, METHODID_CLIENT_STREAMING_EVENT)))
           .addMethod(
             getBiStreamingEventMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            asyncBidiStreamingCall(
               new MethodHandlers<
                 song.mingu.proto.EventRequest,
                 song.mingu.proto.EventResponse>(
@@ -278,7 +291,7 @@ public final class EventServiceGrpc {
      */
     public void unaryEvent(song.mingu.proto.EventRequest request,
         io.grpc.stub.StreamObserver<song.mingu.proto.EventResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
+      asyncUnaryCall(
           getChannel().newCall(getUnaryEventMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -286,7 +299,7 @@ public final class EventServiceGrpc {
      */
     public void serverStreamingEvent(song.mingu.proto.EventRequest request,
         io.grpc.stub.StreamObserver<song.mingu.proto.EventResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+      asyncServerStreamingCall(
           getChannel().newCall(getServerStreamingEventMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -294,7 +307,7 @@ public final class EventServiceGrpc {
      */
     public io.grpc.stub.StreamObserver<song.mingu.proto.EventRequest> clientStreamingEvent(
         io.grpc.stub.StreamObserver<song.mingu.proto.EventResponse> responseObserver) {
-      return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
+      return asyncClientStreamingCall(
           getChannel().newCall(getClientStreamingEventMethod(), getCallOptions()), responseObserver);
     }
 
@@ -302,7 +315,7 @@ public final class EventServiceGrpc {
      */
     public io.grpc.stub.StreamObserver<song.mingu.proto.EventRequest> biStreamingEvent(
         io.grpc.stub.StreamObserver<song.mingu.proto.EventResponse> responseObserver) {
-      return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
+      return asyncBidiStreamingCall(
           getChannel().newCall(getBiStreamingEventMethod(), getCallOptions()), responseObserver);
     }
   }
@@ -330,7 +343,7 @@ public final class EventServiceGrpc {
      * </pre>
      */
     public song.mingu.proto.EventResponse unaryEvent(song.mingu.proto.EventRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+      return blockingUnaryCall(
           getChannel(), getUnaryEventMethod(), getCallOptions(), request);
     }
 
@@ -338,7 +351,7 @@ public final class EventServiceGrpc {
      */
     public java.util.Iterator<song.mingu.proto.EventResponse> serverStreamingEvent(
         song.mingu.proto.EventRequest request) {
-      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+      return blockingServerStreamingCall(
           getChannel(), getServerStreamingEventMethod(), getCallOptions(), request);
     }
   }
@@ -367,7 +380,7 @@ public final class EventServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<song.mingu.proto.EventResponse> unaryEvent(
         song.mingu.proto.EventRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
+      return futureUnaryCall(
           getChannel().newCall(getUnaryEventMethod(), getCallOptions()), request);
     }
   }
